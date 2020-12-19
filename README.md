@@ -4,7 +4,7 @@ Gather all pictures from different sites using a simple python code
 # Requirements
 Python3
 
-requests and urllib3 projects
+**requests** and **urllib3**
 ```shell
 pip install requests
 pip install urllib3
@@ -12,7 +12,7 @@ pip install urllib3
 
 # Usage
 
-Library names can be found within lib.dat
+**Library names can be found within lib.dat**
 
 ```shell
 python code.py [library_name] [inbound] [outbound]
