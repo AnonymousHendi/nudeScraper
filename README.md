@@ -33,3 +33,8 @@ For gathering all pictures from playboyplus.com library in folder 4:
 ```shell
 python code.py playboyplus.com 4
 ```
+
+# Changes
+
+## 1.0.0
+- First release
