@@ -1,6 +1,15 @@
 # nudeScraper
 Gather all pictures from different sites using a simple python code
 
+# Requirements
+Python3
+
+requests and urllib3 projects
+```shell
+pip install requests
+pip install urllib3
+```
+
 # Usage
 
 Library names can be found within lib.dat
