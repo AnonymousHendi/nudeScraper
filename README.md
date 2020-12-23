@@ -12,6 +12,8 @@ pip install urllib3
 
 # Usage
 
+**FOR THE CODE TO WORK PROPERLY MAKE SURE lib.dat IS WITHIN THE SAME code.py DIRECTORY SINCE THE CODE CHECKS IF THE LIBRARY EXISTS OR NOT**
+
 **Library names can be found within lib.dat**
 
 ```shell
