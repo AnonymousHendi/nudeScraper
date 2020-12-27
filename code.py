@@ -2,6 +2,7 @@ import requests
 import urllib3
 import os
 import sys
+import threading
 
 args = sys.argv
 
@@ -22,6 +23,28 @@ def make_dir(dir_name):
     if not os.path.exists(dir_name):
         os.mkdir(dir_name)
 
+def getImage(image,url,seg,sub_folder):
+
+    image_url = "/{}/{:04d}/{:02d}.jpg".format(seg,sub_folder,image)
+
+    if (not is_url_image(url+image_url)):
+        return False
+    else:
+        print(url+image_url)
+        response = requests.get(url+image_url,verify=False)
+
+        try:
+            make_dir("{}/{:04d}".format(seg,sub_folder))
+        except FileExistsError:
+            print("Skipping. File already exists")
+
+        file = open("{}/{:04d}/{:02d}.jpg".format(seg,sub_folder,image),"wb")
+
+        file.write(response.content)
+
+        file.close()
+
+        return True
 
 lib = open("lib.dat","r")
 
@@ -67,18 +90,6 @@ for seg in segs:
             print(seg + " Done.")
             break
 
-        for image in range(0,100):
-            image_url = "/{}/{:04d}/{:02d}.jpg".format(seg,sub_folder,image)
-            print(url+image_url)
-            if (not is_url_image(url+image_url)):
-                break
-            else:
-                response = requests.get(url+image_url,verify=False)
-
-                make_dir("{}/{:04d}".format(seg,sub_folder))
-
-                file = open("{}/{:04d}/{:02d}.jpg".format(seg,sub_folder,image),"wb")
-
-                file.write(response.content)
-
-                file.close()
+        for image in range(0,40):
+            x = threading.Thread(target=getImage,args=(image,url,seg,sub_folder,))
+            x.start()
